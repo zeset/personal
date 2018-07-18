@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="karate-do big-table">
+			<div class="karate-do left-fault fault-score">
+				<div class="faltas-score-n1 faltas-score player-n1">
+					<div class="botonera">
+						<a class="sumar">+</a>
+						<a class="restar">-</a>
+					</div>
+					<div class="fault-type-wrapper" id="faultType">
+						<span>-</span>
+					</div>
+				</div>
+				<div class="faltas-score-n1 faltas-score player-n1 a-option">
+					<div class="botonera">
+						<input type="checkbox" class="cyclic-button"></input>
+					</div>
+					<div class="fault-type-wrapper-a">
+						<span>A</span>
+					</div>
+				</div>
+				<div class="faltas-score-n1 faltas-score player-n1 m-option">
+					<div class="botonera">
+						<input type="checkbox" class="cyclic-button"></input>
+					</div>
+					<div class="fault-type-wrapper-m">
+						<span>M</span>
+					</div>
+				</div>
+			</div>
+			<div class="players-and-timer">
+				<div class="players-board">
+					<div class="player player-n1">
+						<span class="inner-player">0</span>
+					</div>
+					<div class="player player-n2">
+						<span class="inner-player">0</span>
+					</div>
+				</div>
+				<div class="karate-do timer">
+					<span class="inner-timer">0:00</span>
+				</div>
+			</div>
+			<div class="karate-do right-fault fault-score">
+				<div class="faltas-score-n2 faltas-score player-n2">
+					<div class="fault-type-wrapper" id="faultType">
+						<span>-</span>
+					</div>
+					<div class="botonera">
+						<a class="sumar">+</a>
+						<a class="restar">-</a>
+					</div>
+				</div>
+				<div class="faltas-score-n2 faltas-score player-n2 a-option">
+					<div class="fault-type-wrapper-a">
+						<span>A</span>
+					</div>
+					<div class="botonera">
+						<input type="checkbox" class="cyclic-button"></input>
+					</div>
+				</div>
+				<div class="faltas-score-n2 faltas-score player-n2 m-option">
+					<div class="fault-type-wrapper-m">
+						<span>M</span>
+					</div>
+					<div class="botonera">
+						<input type="checkbox" class="cyclic-button"></input>
+					</div>
+				</div>
+			</div>
+			<div class="botonera-funcionalidades-wrapper">
+				<div class="botonera-funcionalidades">
+					<table>
+						<tr>
+							<td><input type="text" value="0" id="chooseTime"></td><td><button class="reset">reiniciar</button></td><td><button id="initCountdown">iniciar</button></td>
+						</tr>
+						<tr>
+							<td><button class="player1-point-up"></button><button class="player1-point-down"></button></td><td><button id="stopCountdown">detener</button></td><td><button class="player1-point-up"></button><button class="player1-point-down"></button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<style type="text/css">
+		.karate-do.big-table { width: 100%; text-align: center; }
+		.karate-do.fault-score,
+		.players-and-timer { min-height: 400px; display: inline-block; }
+		.karate-do.fault-score { width: 20%; }
+		.karate-do .players-and-timer { width: 50%; }
+		.karate-do,
+		.karate-do div { border: 1px solid #000; }
+		.player { width: 48%; display: inline-block; text-align: center; font-size: 273px; }
+		.player.player-n1 { background-color: red; }
+		.player.player-n2 { background-color: white; }
+		.players-board { display: block; }
+		.karate-do.timer { display: block; font-size: 200px; text-align: center; }
+		.faltas-score { display: block; }
+		.faltas-score .fault-type-wrapper, .faltas-score .fault-type-wrapper-a, .faltas-score .fault-type-wrapper-m { display: inline-block; font-size: 155px; text-align: center; width: 70%; }
+		.faltas-score .botonera {display: inline-block;width: 26%;border: 0;}
+		.botonera button { display: block; }
+		.players-and-timer { vertical-align: top; }
+		.botonera-funcionalidades-wrapper {position: absolute;}
+		.botonera-funcionalidades td {border: 1px solid #000;}
+		.sumar, .restar {font-size: 50px;display: block;cursor: pointer;}
+		#faultType.fault-type-wrapper {
+    font-size: 125px;
+}
+
+
+		</style>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+				/* faltas acumulables - logica*/
+				// saanbon
+				var jogai = ["-", "J", "J2", "Jch", "Jha"];
+
+				var j_player1 = 0;
+				var j_player2 = 0;
+
+			    $( ".faltas-score-n1 .sumar" ).click(function() {
+		    		j_player1 = ( j_player1 + 1 ) % 5;
+		    		$(".faltas-score-n1 #faultType span").html(jogai[j_player1]);
+			    });
+
+			    $( ".faltas-score-n1 .restar" ).click(function() {
+			    	if(j_player1 > 0){
+			    		j_player1 = ( j_player1 - 1 ) % 5;
+			    		$(".faltas-score-n1 #faultType span").html(jogai[j_player1]);
+			    	}
+			    });
+
+			    $( ".faltas-score-n2 .sumar" ).click(function() {
+			    	j_player2 = ( j_player2 + 1 ) % 5;
+			    	$(".faltas-score-n2 #faultType span").html(jogai[j_player2]);
+			    });
+
+			    $( ".faltas-score-n2 .restar" ).click(function() {
+			    	if(j_player2 > 0){
+			    		j_player2 = ( j_player2 - 1 ) % 5;
+			    		$(".faltas-score-n2 #faultType span").html(jogai[j_player2]);
+			    	}
+			    });
+
+			    /* Checkboxes */
+
+			    $(".cyclic-button").change(function() {
+			    	if ($(this).parents('.player-n1').length) {
+			    		if ($(this).parents('.m-option').length) {
+			    			if($(this).is(':checked')){
+		    			        $(".player-n1 .fault-type-wrapper-m").css("background-color", "grey");
+		    			    } else {
+		    			        $(".player-n1 .fault-type-wrapper-m").css("background-color", "unset");
+		    			    }
+			    		} else {
+			    			if($(this).is(':checked')){
+		    			        $(".player-n1 .fault-type-wrapper-a").css("background-color", "grey");
+		    			    } else {
+		    			        $(".player-n1 .fault-type-wrapper-a").css("background-color", "unset");
+		    			    }
+			    		}
+			    	} else {
+			    		if ($(this).parents('.m-option').length) {
+			    			if($(this).is(':checked')){
+		    			        $(".player-n2 .fault-type-wrapper-m").css("background-color", "grey");
+		    			    } else {
+		    			        $(".player-n2 .fault-type-wrapper-m").css("background-color", "unset");
+		    			    }
+			    		} else {
+			    			if($(this).is(':checked')){
+		    			        $(".player-n2 .fault-type-wrapper-a").css("background-color", "grey");
+		    			    } else {
+		    			        $(".player-n2 .fault-type-wrapper-a").css("background-color", "unset");
+		    			    }
+			    		}
+			    	}
+			    });
+			});
+		</script>
+		<script>
+		
+		$(document).ready(function(){
+
+			var stopCd = false;
+
+			$("#stopCountdown").click(function(){
+				if (!stopCd) {
+					$(this).html('reanudar');
+				} else {
+					$(this).html('detener');
+				}
+				stopCd = !stopCd;
+			});
+
+			$('#initCountdown').click(function() {
+
+				$('.karate-do.timer .inner-timer').html("-");
+				var timer2 = $("#chooseTime").val();
+				var initialTimer = timer2.split(':');
+				var initMinutes = parseInt(initialTimer[0], 10);
+				var initSeconds = (isNaN(initialTimer[1])) ? 00 : parseInt(initialTimer[1], 10);
+				$('.karate-do.timer .inner-timer').html(initMinutes + ':' + "0" + initSeconds);
+
+				var interval = setInterval(function() {
+					if (!stopCd) {
+						var timer = timer2.split(':');
+						//by parsing integer, I avoid all extra string processing
+						var minutes = parseInt(timer[0], 10);
+						var seconds = (isNaN(timer[1])) ? 00 : parseInt(timer[1], 10)
+						--seconds;
+						minutes = (seconds < 0) ? --minutes : minutes;
+						if (minutes < 0) clearInterval(interval);
+						seconds = (seconds < 0) ? 59 : seconds;
+						seconds = (seconds < 10) ? '0' + seconds : seconds;
+						//minutes = (minutes < 10) ?  minutes : minutes;
+						if (parseInt(minutes) === -1) {
+							stopCd = true;
+							return;
+						} else {
+							$('.karate-do.timer .inner-timer').html(minutes + ':' + seconds);
+						}
+						timer2 = minutes + ':' + seconds;
+					}
+				}, 1000);
+			});
+
+		});
+		</script>
+	</body>
+
+</html>
+
+
+
+

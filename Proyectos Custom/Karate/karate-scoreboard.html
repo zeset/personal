@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Karate Scoreboard</title>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+	<script src="jquery/jquery.fittext.js"></script>
+	<link href="css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+	<div id="karate-scoreboard">
+		<div id="header">
+			<div id="topbar">
+				<span id="division-title" class="topbar-title">División: </span>
+				<span id="divition-value" class="topbar-title">Write your division here</span>
+			</div>
+			<div id="players-info">
+				<div id="left-player" class="player-info">
+					<h2 class="player-title" id="white-title">Blanco</h2>
+					<div class="player-name">Escriba el nombre del jugador aquí</div>
+				</div>
+				<div id="right-player" class="player-info">
+					<h2 class="player-title" id="red-title">Rojo</h2>
+					<div class="player-name">Escriba el nombre del jugador aquí</div>
+				</div>
+			</div>
+		</div>
+		<div id="scoreboard-timer">
+			<div class="karate-do timer">
+				<div class="inner-timer">0:00</div>
+			</div>
+		</div>
+		<div id="content">
+			<div id="leftside" class="side">
+				<div id="left-gral-score" class="gral-score">
+					<div class="gral-score-value">0</div>
+				</div>
+				<div id="left-spec-score" class="specific-score">
+					<div class="other-faults">
+						<div class="m-fault"><div class="other-fault-inner">A</div></div>
+						<div class="a-fault"><div class="other-fault-inner">M</div></div>
+					</div>
+					<div class="j-faults">
+						<div id="jf" class="j-each-fault">J</div>
+						<div id="jf2" class="j-each-fault">J2</div>
+						<div id="jfch" class="j-each-fault">Jch</div>
+						<div id="jfha" class="j-each-fault optional">Jha</div>
+					</div>
+				</div>
+			</div>
+			<div id="rightside" class="side">
+				<div id="right-gral-score" class="gral-score">
+					<div class="gral-score-value">0</div>
+				</div>
+				<div id="right-spec-score" class="specific-score">
+					<div class="j-faults">
+						<div id="jfha" class="j-each-fault optional">Jha</div>
+						<div id="jfch" class="j-each-fault">Jch</div>
+						<div id="jf2" class="j-each-fault">J2</div>
+						<div id="jf" class="j-each-fault">J</div>
+					</div>
+					<div class="other-faults">
+						<div class="m-fault"><div class="other-fault-inner">A</div></div>
+						<div class="a-fault"><div class="other-fault-inner">M</div></div>
+					</div>
+				</div>
+			</div>
+			<div id="time-selector">
+				<div class="time-option"></div>
+				<div class="time-option"></div>
+				<div class="time-option"></div>
+			</div>
+			<div id="bottom-bar" class="inactive">
+				<div id="toggle-bbar">
+					<i class="fa fa-angle-up" aria-hidden="true"></i>
+				</div>
+				<div id="inner-bbar" style="display: none;">
+					<div id="left-player-name-outter">
+						<input type="text" id="input-leftplayer-name" placeholder="Escribe el nombre del jugador aquí" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<style type="text/css">
+@font-face { font-family: "digital-7"; src: url('fonts/digital-7/digital-7.ttf'); } 
+#left-player-name-outter::after {
+    color: black;
+    content: "ok";
+    font-size: 30px;
+    height: 50px;
+    position: absolute;
+    right: -100px;
+    width: 50px;
+}
+#left-player-name-outter {
+	width: auto;
+	display: inline-block;
+}
+#karate-scoreboard { background-color: black; font-family: "Open Sans", sans-serif; height: 100%; margin: 0; }
+#header { background-color: black; display: block; height: 11%; }
+#topbar { color: #fff; text-align: center; width: 100%; height: 60%; }
+#division-title { font-size: 60px; }
+#players-info { width: 100%; height: 40%;}
+.player-info { width: 48%; display: inline-block; }
+#white-title { color: #bbb; }
+#red-title { color: red; }
+.player-title { font-size: 129%; padding: 0 10px 0 10px; font-weight: bold; width: 17%; display: inline-block; margin: 0; }
+.player-name { width: 70%; display: inline-block; color: white;}
+.side { color: #fff; width: 49.5%; height: 100%; display: inline-block; overflow: hidden; }
+#leftside { background-color: #bbb; }
+#rightside { background-color: #FE0000; }
+#scoreboard-timer { font-family: "digital-7"; color: white; background: rgba(0,0,0,0.67); none repeat scroll 0 0; border: 3px solid white; border-radius: 6px; height: 24.5%; margin-left: 33%; margin-top: 7.5%; position: absolute; width: 33.3%; text-align: center; overflow: hidden;}
+#bottom-bar { background: rgba(0,0,0,0.67); bottom: 3%; position: absolute; width: 100%; }
+#bottom-bar.active {height: 10%;}
+#bottom-bar.inactive {height: 4%;}
+#division-title { font-size: 177%; }
+.karate-do.timer {
+    margin-top: -12%;
+}
+#inner-bbar {width: 100%; height: 60%;}
+#toggle-bbar {
+    color: white;
+    cursor: pointer !important;
+    display: block;
+    width: 100%;
+	background-color: black;
+}
+.active #toggle-bbar {
+	height: 40%;
+}
+.inactive #toggle-bbar {
+	height: 100%;
+}
+body { margin: 0; padding: 0; height: 100%; }
+#content { height: 88%; margin: 0; padding: 0; text-align: center; }
+html { height: 100%; margin: 0; padding: 0; }
+.gral-score { height: 47%; overflow: hidden; width: 100%; }
+.other-faults > div { margin-bottom: 10%; }
+.gral-score-value { display: inline-block; margin-top: -14%; max-height: 100%; width: 80%; }
+#right-gral-score.gral-score { text-align: left; }
+#left-gral-score.gral-score { text-align: right; }
+#left-gral-score .gral-score-value { text-align: left; }
+.j-each-fault { border: 2px solid; border-radius: 135px; display: inline-block; font-weight: bold; margin-top: 7%; padding: 3.2% 3.2% 3.2% 2.9%; text-align: center; text-transform: uppercase; width: 6.5%; }
+.j-faults { display: inline-block; height: 80%; vertical-align: top; width: 79%; }
+#left-spec-score { height: 52%; padding-top: 5%; }
+#left-spec-score .j-each-fault { margin-left: 7%; }
+#right-spec-score .j-each-fault { margin-right: 7%; }
+#right-spec-score { height: 52%; padding-top: 5%; }
+#right-spec-score .j-faults { text-align: center; }
+.other-faults { display: inline-block; height: 80%; width: 20%; }
+#right-gral-score .gral-score-value { text-align: right; }
+#left-spec-score .other-faults { text-align: right; }
+.other-fault-inner { border: 2px solid; border-radius: 6px; display: inline-block; height: 85%; text-align: center; width: 50%; }
+#right-spec-score .other-faults { text-align: left; }
+</style>
+<script type="text/javascript">
+			$(document).ready(function(){
+
+				/* faltas acumulables - logica*/
+				// saanbon
+				var jogai = ["-", "J", "J2", "Jch", "Jha"];
+
+				var j_player1 = 0;
+				var j_player2 = 0;
+
+			    $( ".faltas-score-n1 .sumar" ).click(function() {
+		    		j_player1 = ( j_player1 + 1 ) % 5;
+		    		$(".faltas-score-n1 #faultType span").html(jogai[j_player1]);
+			    });
+
+			    $( ".faltas-score-n1 .restar" ).click(function() {
+			    	if(j_player1 > 0){
+			    		j_player1 = ( j_player1 - 1 ) % 5;
+			    		$(".faltas-score-n1 #faultType span").html(jogai[j_player1]);
+			    	}
+			    });
+
+			    $( ".faltas-score-n2 .sumar" ).click(function() {
+			    	j_player2 = ( j_player2 + 1 ) % 5;
+			    	$(".faltas-score-n2 #faultType span").html(jogai[j_player2]);
+			    });
+
+			    $( ".faltas-score-n2 .restar" ).click(function() {
+			    	if(j_player2 > 0){
+			    		j_player2 = ( j_player2 - 1 ) % 5;
+			    		$(".faltas-score-n2 #faultType span").html(jogai[j_player2]);
+			    	}
+			    });
+
+			    /* Checkboxes */
+
+			    $(".cyclic-button").change(function() {
+			    	if ($(this).parents('.player-n1').length) {
+			    		if ($(this).parents('.m-option').length) {
+			    			if($(this).is(':checked')){
+		    			        $(".player-n1 .fault-type-wrapper-m").css("background-color", "grey");
+		    			    } else {
+		    			        $(".player-n1 .fault-type-wrapper-m").css("background-color", "unset");
+		    			    }
+			    		} else {
+			    			if($(this).is(':checked')){
+		    			        $(".player-n1 .fault-type-wrapper-a").css("background-color", "grey");
+		    			    } else {
+		    			        $(".player-n1 .fault-type-wrapper-a").css("background-color", "unset");
+		    			    }
+			    		}
+			    	} else {
+			    		if ($(this).parents('.m-option').length) {
+			    			if($(this).is(':checked')){
+		    			        $(".player-n2 .fault-type-wrapper-m").css("background-color", "grey");
+		    			    } else {
+		    			        $(".player-n2 .fault-type-wrapper-m").css("background-color", "unset");
+		    			    }
+			    		} else {
+			    			if($(this).is(':checked')){
+		    			        $(".player-n2 .fault-type-wrapper-a").css("background-color", "grey");
+		    			    } else {
+		    			        $(".player-n2 .fault-type-wrapper-a").css("background-color", "unset");
+		    			    }
+			    		}
+			    	}
+			    });
+
+			    $( "#toggle-bbar" ).click(function() {
+	    			if ($('#bottom-bar').hasClass('inactive')) {
+	    				$('#bottom-bar').removeClass('inactive');
+	    				$('#bottom-bar').addClass('active');
+	    				$("#toggle-bbar i").removeClass('fa-angle-up');
+	    				$("#toggle-bbar i").addClass('fa-angle-down');
+	    				$('#bottom-bar.active #inner-bbar').css('display', 'block');
+
+	    			} else if ($('#bottom-bar').hasClass('active')) {
+	    				$('#bottom-bar').removeClass('active');
+	    				$('#bottom-bar').addClass('inactive');
+	    				$("#toggle-bbar i").removeClass('fa-angle-down');
+	    				$("#toggle-bbar i").addClass('fa-angle-up');
+	    				$('#bottom-bar.inactive #inner-bbar').css('display', 'none')
+	    			}
+			    });
+			});
+		</script>
+		<script>
+		
+		$(document).ready(function(){
+
+			var stopCd = false;
+
+			$("#stopCountdown").click(function(){
+				if (!stopCd) {
+					$(this).html('reanudar');
+				} else {
+					$(this).html('detener');
+				}
+				stopCd = !stopCd;
+			});
+
+			$('#initCountdown').click(function() {
+
+				$('.karate-do.timer .inner-timer').html("-");
+				var timer2 = $("#chooseTime").val();
+				var initialTimer = timer2.split(':');
+				var initMinutes = parseInt(initialTimer[0], 10);
+				var initSeconds = (isNaN(initialTimer[1])) ? 00 : parseInt(initialTimer[1], 10);
+				$('.karate-do.timer .inner-timer').html(initMinutes + ':' + "0" + initSeconds);
+
+				var interval = setInterval(function() {
+					if (!stopCd) {
+						var timer = timer2.split(':');
+						//by parsing integer, I avoid all extra string processing
+						var minutes = parseInt(timer[0], 10);
+						var seconds = (isNaN(timer[1])) ? 00 : parseInt(timer[1], 10)
+						--seconds;
+						minutes = (seconds < 0) ? --minutes : minutes;
+						if (minutes < 0) clearInterval(interval);
+						seconds = (seconds < 0) ? 59 : seconds;
+						seconds = (seconds < 10) ? '0' + seconds : seconds;
+						//minutes = (minutes < 10) ?  minutes : minutes;
+						if (parseInt(minutes) === -1) {
+							stopCd = true;
+							return;
+						} else {
+							$('.karate-do.timer .inner-timer').html(minutes + ':' + seconds);
+						}
+						timer2 = minutes + ':' + seconds;
+					}
+				}, 1000);
+			});
+
+		});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				jQuery(".gral-score-value").fitText(0.16);
+				jQuery(".inner-timer").fitText(0.2);
+				jQuery(".j-each-fault").fitText(0.15);
+				jQuery(".other-fault-inner").fitText(0.14);
+				jQuery("#toggle-bbar").fitText(8);
+			});
+		</script>
+</body>
+</html>
