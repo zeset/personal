@@ -1,0 +1,45 @@
+file 507733 1528837463                                          
+version 2
+run General-0-20180612-18:04:11-14451
+attr configname General
+attr datetime 20180612-18:04:11
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsf ""
+attr measurement ""
+attr network Network
+attr processid 14451
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+param Network.queue0.serviceTime exponential(1)
+param Network.queue1.serviceTime exponential(1)
+param Network.nodeTx.gen.generationInterval exponential(0.1)
+param Network.nodeTx.gen.packetByteSize 12500
+param Network.nodeTx.traTx.serviceTime exponential(0.001)
+param Network.nodeRx.traRx.serviceTime exponential(0.001)
+param Network.queue0.bufferSize 20
+param Network.queue1.bufferSize 20
+param Network.nodeRx.traRx.bufferSize 20
+param Network.nodeTx.traTx.bufferSize 2000000
+
+vector 0 Network.nodeTx.gen "Packages sent by generator" ETV
+vector 1 Network.nodeTx.traTx "" ETV
+vector 2 Network.queue0 SizeVector ETV
+vector 3 Network.nodeRx.traRx "" ETV
+vector 4 Network.nodeRx.traRx "Packages received by Rx" ETV
+vector 5 Network.nodeRx.sink Delay ETV
+vector 6 Network.nodeRx.sink "Packets received by sink" ETV
+vector 7 Network.queue1 SizeVector ETV
+0	1202 56107 0 25716 0 199.995645792347 1980 0 1979 1959210 2585504130
+1	57309 108531 2 25717 0.079587450457 199.995645792347 3950 1 1971 1969277 2554756093
+2	165840 51246 7 25706 0.179687450457 199.974681545182 1970 1 1 1970 1970
+3	217086 51224 12 25708 0.279787450457 199.974781545182 1969 2 5 5956 18222
+4	268310 56024 12 25708 0.279787450457 199.974781545182 1969 1 1969 1939465 2546517545
+5	324334 76253 19 25709 0.379787450457 199.978301545182 1967 0.3002 3.575987716556 3137.9117511073 6399.3912146788
+6	400587 55969 19 25709 0.379787450457 199.978301545182 1967 1 1967 1935528 2538767560
+7	456556 51176 22 25712 0.380047450457 199.978561545182 1967 1 1 1967 1967
+
