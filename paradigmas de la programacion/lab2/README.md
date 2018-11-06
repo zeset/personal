@@ -7,7 +7,7 @@
 
 
 
-Nahuel Borda y Paula Reyna
+Nahuel Borda
 
 
 
