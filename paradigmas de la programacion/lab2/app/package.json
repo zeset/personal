@@ -12,7 +12,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "bootstrap": "^4.0.0",
     "css-loader": "^0.28.7",
-    "jquery": "^1.9.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.5",
     "node-sass": "^4.7.2",
     "prop-types": "^15.6.1",
