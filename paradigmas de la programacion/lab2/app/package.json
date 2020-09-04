@@ -14,7 +14,7 @@
     "css-loader": "^0.28.7",
     "jquery": "^1.9.1",
     "lodash": "^4.17.5",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "prop-types": "^15.6.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
